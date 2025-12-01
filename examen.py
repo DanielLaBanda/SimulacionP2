@@ -43,13 +43,15 @@ n = st.slider("Número de muestras:", 100, 10000, 1000, step=100)
 
 # Selección del intervalo a integrar
 intervalo = st.radio(
-    "Selecciona intervalo [a, b]:", ("[0, π/2]", "[-6, 6]", "Personalizado")
+    "Selecciona intervalo [a, b]:", ("[0, π/2]", "[-6, 6]", "[-∞, ∞]", "Personalizado")
 )
 
 if intervalo == "[0, π/2]":
     a, b = 0, np.pi / 2
 elif intervalo == "[-6, 6]":
     a, b = -6, 6
+elif intervalo == "[-∞, ∞]":
+    a, b = 1e-5, 1e5  # Números muy grandes para aproximar a infinito.
 else:
     col1, col2 = st.columns(2)
     a = col1.number_input("Límite a:", value=0.0)
